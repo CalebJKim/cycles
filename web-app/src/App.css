@@ -36,3 +36,57 @@
     transform: rotate(360deg);
   }
 }
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.lowerDisplay {
+  display: flex;
+  gap: 100px;
+}
+
+/* Flex container for the entire card */
+.info-card {
+  display: flex;
+  align-items: flex-start; /* Align the text to the top of the image */
+  gap: 20px; /* Space between the image and the text */
+  padding: 20px;
+  border: 1px solid #ccc; /* Optional: Border around the card */
+  border-radius: 8px; /* Optional: Rounded corners */
+  max-width: 600px; /* Optional: Limits the card's width */
+}
+
+/* Styles for the image container */
+.info-card-image img {
+  width: 150px; /* Adjust the size of the image */
+  height: auto;
+  border-radius: 8px; /* Optional: Adds rounded corners to the image */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+}
+
+/* Flex container for the text (title and description) */
+.info-card-text {
+  display: flex;
+  flex-direction: column; /* Stack title and description vertically */
+  justify-content: flex-start; /* Align text to the top of the container */
+}
+
+/* Styling for the title */
+.info-card-text h2 {
+  font-size: 1.5em;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Styling for the description */
+.info-card-text p {
+  font-size: 0.9em;
+  margin: 5px 0 0; /* Adds space between the title and the description */
+  color: #555; /* Optional: A lighter color for the description text */
+}
+

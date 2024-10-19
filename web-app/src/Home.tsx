@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SafetyScoreDashboard from './SafetyScoreOverview/SafetyScoreDashboard';
 import axios from 'axios';
 
 const Home: React.FC = () => {
@@ -16,9 +17,9 @@ const Home: React.FC = () => {
 
   return (
     <div>
-        <h1>React and Flask Integration Test</h1>
-        <p>Data from Flask: {apiData}</p>
-      </div>
+         {/* <p>Data from Flask: {apiData}</p> */}
+        <SafetyScoreDashboard />
+    </div>
   )
 
 }
