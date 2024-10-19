@@ -4,6 +4,7 @@ import dotenv
 import os
 import time
 from typing import Any, Dict
+from llm import GeminiLLM
 
 
 
@@ -37,9 +38,11 @@ async def handle_get(ctx: Context) -> Dict[str, Any]:
 
 @agent.on_rest_post("/rest/post", Request, Response)
 async def handle_post(ctx: Context, req: Request) -> Response:
-    ctx.logger.info("Received POST request")
+    llm = GeminiLLM()
+    response = llm.invoke(req.text)
+    ctx.logger.info(f"Received POST request with question {req.text}")
     return Response(
-        text=f"Received: {req.text}",
+        text=f"Received: {req.text} and returned {response}",
         agent_address=ctx.agent.address,
         timestamp=int(time.time()),
     )
