@@ -38,16 +38,18 @@
 }
 
 .dashboard {
-  display: flex;
+  display:inline-block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  padding: 2%;
+
+  outline: 2px solid black;
 }
 
 .lowerDisplay {
   display: flex;
-  gap: 100px;
+  gap: 25px;
 }
 
 /* Flex container for the entire card */
@@ -90,3 +92,42 @@
   color: #555; /* Optional: A lighter color for the description text */
 }
 
+/* The scrollable container */
+.scroll-container {
+  height: 150px; /* Height of the container */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  border: 1px solid #ccc;
+  scrollbar-width: thin; /* For Firefox: reduce the scrollbar width */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Custom scrollbar for WebKit browsers (Chrome, Safari) */
+.scroll-container::-webkit-scrollbar {
+  width: 6px; /* Make the scrollbar thinner */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px; /* Rounded scrollbar for a cleaner look */
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Each persona is stacked vertically */
+.persona-wrapper {
+  height: 150px; /* Same height as the container to display one persona at a time */
+  padding: 0; /* Remove extra padding to reduce white space */
+  margin: 0; /* Remove extra margins */
+  display: flex;
+  align-items: center; /* Center align the content vertically */
+  box-sizing: border-box;
+}
+
+/* curve the box */
+/* make it longer :) */
