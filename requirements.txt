@@ -14,3 +14,5 @@ singlestoredb==1.7.2
 sqlparams==6.1.0
 urllib3==2.2.3
 wheel==0.44.0
+flask==3.0.3
+flask_cors==5.0.0
