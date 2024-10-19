@@ -36,3 +36,98 @@
     transform: rotate(360deg);
   }
 }
+
+.dashboard {
+  display:inline-block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+
+  outline: 2px solid black;
+}
+
+.lowerDisplay {
+  display: flex;
+  gap: 25px;
+}
+
+/* Flex container for the entire card */
+.info-card {
+  display: flex;
+  align-items: flex-start; /* Align the text to the top of the image */
+  gap: 20px; /* Space between the image and the text */
+  padding: 20px;
+  border: 1px solid #ccc; /* Optional: Border around the card */
+  border-radius: 8px; /* Optional: Rounded corners */
+  max-width: 600px; /* Optional: Limits the card's width */
+}
+
+/* Styles for the image container */
+.info-card-image img {
+  width: 150px; /* Adjust the size of the image */
+  height: auto;
+  border-radius: 8px; /* Optional: Adds rounded corners to the image */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+}
+
+/* Flex container for the text (title and description) */
+.info-card-text {
+  display: flex;
+  flex-direction: column; /* Stack title and description vertically */
+  justify-content: flex-start; /* Align text to the top of the container */
+}
+
+/* Styling for the title */
+.info-card-text h2 {
+  font-size: 1.5em;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Styling for the description */
+.info-card-text p {
+  font-size: 0.9em;
+  margin: 5px 0 0; /* Adds space between the title and the description */
+  color: #555; /* Optional: A lighter color for the description text */
+}
+
+/* The scrollable container */
+.scroll-container {
+  height: 150px; /* Height of the container */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  border: 1px solid #ccc;
+  scrollbar-width: thin; /* For Firefox: reduce the scrollbar width */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Custom scrollbar for WebKit browsers (Chrome, Safari) */
+.scroll-container::-webkit-scrollbar {
+  width: 6px; /* Make the scrollbar thinner */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px; /* Rounded scrollbar for a cleaner look */
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Each persona is stacked vertically */
+.persona-wrapper {
+  height: 150px; /* Same height as the container to display one persona at a time */
+  padding: 0; /* Remove extra padding to reduce white space */
+  margin: 0; /* Remove extra margins */
+  display: flex;
+  align-items: center; /* Center align the content vertically */
+  box-sizing: border-box;
+}
+
+/* curve the box */
+/* make it longer :) */
