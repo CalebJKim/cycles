@@ -1,0 +1,2 @@
+from uagents import Model
+
