@@ -12,6 +12,7 @@ import React from "react";
 import CycleGraph from "./CycleGraph";
 import Analysis from "./Analysis";
 import Summary from "./Summary";
+import ImprovementsCard from "./ImprovementsCard";
 
 const InfoCard: React.FC = () => {
   return (
@@ -32,7 +33,8 @@ const InfoCard: React.FC = () => {
         Report
       </Typography>
       <Summary />
-      <Analysis />
+      {/* <Analysis /> */}
+      {/* <ImprovementsCard /> */}
     </Paper>
   );
 };

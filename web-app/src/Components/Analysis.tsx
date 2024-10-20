@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
@@ -11,43 +12,45 @@ import {
 import React from "react";
 import CycleGraph from "./CycleGraph";
 
-const analysis = [
-  {
-    point:
-      "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
-  },
-  {
-    point:
-      "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
-  },
-  {
-    point:
-      "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
-  },
-];
-
-const Analysis: React.FC = () => {
+const Analysis = (props: {
+  numPoints: number;
+  truncate: { };
+  data: { point: string }[];
+}) => {
   return (
     <Stack spacing={1} alignItems="flex-start" sx={{ mb: "1.5rem" }}>
-      <Typography variant="body1" fontWeight="bold">
-        Points to Consider
-      </Typography>
-      <Stack alignItems="flex-start">
-        {
-          analysis.map((points, index) => (
-            <Stack
-                alignItems="flex-start"
-                direction="row"
-                spacing={2}
-                sx={{ textAlign: "left", pl: "1rem", pr: "1rem" }}
-                >
-                <Typography variant="body2">{index + 1}.</Typography>
-                <Typography variant="body2">
-                    {points.point}
-                </Typography>
-                </Stack>
-          ))
-        }
+      <Stack alignItems="flex-start" spacing={2}>
+        {props.data.slice(0, props.numPoints).map((points, index) => (
+          <Stack
+            alignItems="flex-start"
+            direction="row"
+            spacing={2}
+            sx={{ textAlign: "left", pl: "1rem", pr: "1rem" }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                border: 1,
+                borderColor: "#F3F3F3",
+                backgroundColor: "#F3F3F3",
+                p: ".2rem",
+                pl: ".6rem",
+                pr: ".6rem",
+                borderRadius: "50%",
+                textAlign: "center",
+              }}
+            >
+              {index + 1}
+            </Typography>
+            <Typography
+              variant="body2"
+            //   noWrap={props.truncate}
+              sx={props.truncate}
+            >
+              {points.point}{" "}
+            </Typography>
+          </Stack>
+        ))}
       </Stack>
     </Stack>
   );

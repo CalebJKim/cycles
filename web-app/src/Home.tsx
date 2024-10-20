@@ -21,7 +21,7 @@ const Home: React.FC = () => {
     <div className="App">
          {/* <p>Data from Flask: {apiData}</p> */}
         <Dashboard />
-        <Uploader />
+        {/* <Uploader /> */}
     </div>
   )
 

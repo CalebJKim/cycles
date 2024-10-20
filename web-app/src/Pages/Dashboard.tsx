@@ -4,12 +4,13 @@ import Summary from "../Components/Summary";
 import GraphCard from "../Components/GraphCard";
 import KeyPersonasCard from "../Components/KeyPersonasCard";
 import InfoCard from "../Components/InfoCard";
+import ImprovementsCard from "../Components/ImprovementsCard";
 
 const Dashboard: React.FC = () => {
   const data = [
     {
       cycle: "Page A",
-      score: 100,
+      score: 20,
       pv: 2400,
       amt: 2400,
     },
@@ -39,7 +40,7 @@ const Dashboard: React.FC = () => {
     },
     {
       cycle: "Page F",
-      score: 95,
+      score: 72,
       pv: 3800,
       amt: 2500,
     },
@@ -53,6 +54,7 @@ const Dashboard: React.FC = () => {
   return (
     <Box sx={{ display: "flex", direction: "row", backgroundColor:"#f9f9f9" }}>
       <Box sx={{ width: "50%" }}>
+        <ImprovementsCard />
         <GraphCard score={"80%"} data={data} />
         <KeyPersonasCard />
       </Box>
