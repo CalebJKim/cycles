@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import os
-from db import get_session_cycles, start_session
+from db import get_session_cycles, start_session, get_session_personas
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +21,15 @@ def get_data():
         return jsonify(data)
     cycles = get_session_cycles(id)
     data = {'message': cycles}
+    return jsonify(data)
+
+@app.route('/api/personas', methods=['GET'])
+def get_persona_data():
+    if id == -1:
+        data = {'message': []}
+        return jsonify(data)
+    personas = get_session_personas(id)
+    data = {'message': personas}
     return jsonify(data)
 
 @app.route('/api/arena', methods=['POST'])

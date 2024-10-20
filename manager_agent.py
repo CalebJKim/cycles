@@ -1,7 +1,7 @@
 from uagents import Agent, Context, Model
 from llm import GeminiLLM
 import time
-from db import add_cycle_data, add_session_data
+from db import add_cycle_data, add_session_data, add_persona_data
 import json
 
 PERSONAS = 3
@@ -22,7 +22,9 @@ agent = Agent(name="Shogun")
 
 #a function to define one cycle of asking everyone
 def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
-    prompt = "You must embody the given persona. Act as this person and speak in first person as well. Explain your general sentiments on the provided media based on your background, and do not hesitate to be critical or supportive. Consider all parts of your life as the user persona depicted and generate a quick paragraph summarizing your sentiments and thoughts on the appeal of the media given to you as well as any other insights. Speak definitely and do no tbe afraid to be very critical or even controversial. Keep a careful eye out for any remarks that may be racist, sexist, or harmful in any way."
+    prompt = "You must embody the given persona. Act as this person and speak in first person as well. Explain your general sentiments on the provided media based on your background, and do not hesitate to be critical or supportive. Consider all parts of your life as the user persona depicted and generate a quick paragraph summarizing your sentiments and thoughts on the appeal of the media given to you as well as any other insights. Speak definitely and do no tbe afraid to be very critical or even controversial. Keep a careful eye out for any remarks that may be racist, sexist, or harmful in any way. Do not use emojis, only use alphanumeric characters"
+    prompt2 = """Create a title and description for the following persona. This should be in the format [title, description].
+    For example: ["my_title", "my_description"]. Your response should not contain anything except this two element array containing title and description"""
     for p in persona_prompts:
         new_input = input + " Persona: " + p + " "
         new_input += prompt + " "
@@ -30,7 +32,13 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
             new_input += "Here is what some other users think: " + prev_summary
         #instead of invoke, call a function that is able to handle text/video then invoke
         p_response = llm.invoke(input_file, new_input)
+        p_response2 = llm.invoke_manager(prompt2 + " " + p)
+        title_desc = json.loads(p_response2)
+        title = title_desc[0]
+        desc = title_desc[1]
         print(p_response)
+        add_persona_data(id, cycle_num, title, 0, desc, str(p_response))
+        
     #create summary
     response = llm.invoke_manager(
         """Summarize the following sentiments and opinions from different people into 1-2 sentences. 
