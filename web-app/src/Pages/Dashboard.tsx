@@ -5,6 +5,8 @@ import GraphCard from "../Components/GraphCard";
 import KeyPersonasCard from "../Components/KeyPersonasCard";
 import InfoCard from "../Components/InfoCard";
 import axios from 'axios'
+import SentimentScoreCard from "../Components/InitialSentiment";
+
 
 interface Cycle {
   //id: number;
@@ -15,7 +17,6 @@ interface Cycle {
   amt: number;
   //sessionId: number;
 }
-import SentimentScoreCard from "../Components/InitialSentiment";
 
 const Dashboard: React.FC = () => {
 
