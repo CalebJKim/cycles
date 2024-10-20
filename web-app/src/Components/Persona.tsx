@@ -1,16 +1,16 @@
 import React from 'react';
 import { Divider, LinearProgress, Stack, Typography } from '@mui/material';
 
-const Persona = (props: { id: number, title: string, score: number, description: string }) => {
+const Persona = (props: { id: number, title: string, description: string }) => {
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 0.5 }}>
         <Typography variant="subtitle1" sx={{ lineHeight: 1.2, mb: -1 }}>Persona {props.id}</Typography>
-        <Typography variant="subtitle1" sx={{ lineHeight: 1.2, mb: -1 }}>{props.score}% Positive</Typography>
+        {/* <Typography variant="subtitle1" sx={{ lineHeight: 1.2, mb: -1 }}>{props.score}% Positive</Typography> */}
       </Stack>
       <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: -1 }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 'bold', flexGrow: 1, lineHeight: 1.2 }}>{props.title}</Typography>
-        <LinearProgress
+        {/* <LinearProgress
           variant="determinate"
           value={props.score}
           sx={{
@@ -22,7 +22,7 @@ const Persona = (props: { id: number, title: string, score: number, description:
             },
             backgroundColor: '#CCCCCC',
           }}
-        />
+        /> */}
       </Stack>
       <Typography
         variant="body2"

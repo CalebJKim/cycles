@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
             cycle: "Cycle " + tuple[3],
             pv: 1000,
             amt: 1000,
-            improvement: tuple[5]
+            improvement: tuple[5],
           }));
           setCycles(cyclesArray);
 

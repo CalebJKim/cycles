@@ -85,6 +85,7 @@ const ImprovementsCard: React.FC<ImprovementCardProps> = ({ data }) => {
           p: "1.5rem",
           margin: "1rem",
           maxHeight: "45.42%",
+          minHeight: "45.42%",
           overflow: "hidden",
           textAlign: "left",
         }}
@@ -118,7 +119,7 @@ const ImprovementsCard: React.FC<ImprovementCardProps> = ({ data }) => {
             onClick={seeMore}
             sx={{
               mt: "auto",
-              fontWeight: "bold",
+              // fontWeight: "bold",
               alignSelf: "flex-end",
               borderRadius: "20px",
               backgroundColor: "#487DE7",

@@ -116,7 +116,6 @@ const KeyPersonasCard = () => {
             <Persona
               id={index + 1}
               title={persona.title}
-              score={0}
               description={persona.description.split("\n")[0]}
             />
             {index < 2 && <Divider sx={{ bgcolor: "#B0B0B0", my: 2 }} />}

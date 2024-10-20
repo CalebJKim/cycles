@@ -43,8 +43,8 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
         if prev_summary != '':
             new_input += "Here is what some other users think: " + prev_summary
         #instead of invoke, call a function that is able to handle text/video then invoke
-        p_response = llm.invoke(input_file, new_input)
-        p_response2 = llm.invoke_manager(prompt2 + " " + p + prompt3)
+        p_response = llm.invoke(input_file, new_input + prompt3)
+        p_response2 = llm.invoke_manager(prompt2 + " " + p)
         title_desc = json.loads(p_response2)
         title = title_desc[0]
         desc = title_desc[1]
@@ -72,7 +72,7 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
     summary = response
     response3 = llm.invoke_manager(
         f"""
-        From the following summary of sentiments and details related to those sentiments, identify and extract the key areas of improvement denoted as specifically
+        Given the following summary of sentiments and details related to those sentiments, identify and extract the key areas of improvement denoted as specifically
         as possible, including everything from timestamps for videos, direct quotes from text, and detailing from images. These details will be used to address issues
         in the media and mitigate the spread of harmful content for all viewers. You must respond with 1-2 sentences. Here is the summary: {summary}
         """

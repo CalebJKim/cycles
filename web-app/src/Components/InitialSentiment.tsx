@@ -67,7 +67,7 @@ const SentimentScoreCard: React.FC<SentimentScoreCardProps> = ({ data, score }) 
           {/* <CircularGraph percentage={(0) ? (typeof data === 'undefined') : (data[0].score)} sentiment={getSentiment(data[0].score)} /> */}
           <CircularGraph percentage={score} />
         </Box>
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: 120, justifyContent: 'space-between' }}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: 130, justifyContent: 'space-between' }}>
           <Typography ref={textRef} variant="body2" sx={{ mb: 1, flex: 1, overflow: 'hidden' }}>
             <Summary numSummaries={1} summaries={data} />
           </Typography>
