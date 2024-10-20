@@ -23,6 +23,7 @@ def add_cycle_data(sessionID, summary, score, cycle):
         conn.autocommit(True)
         with conn.cursor() as cur:
             cur.execute(stmt, data)
+    print("ADDED A CYCLE")
 
 def start_session():
     dotenv.load_dotenv()
@@ -37,6 +38,7 @@ def start_session():
         with conn.cursor() as cur:
             cur.execute(stmt)
             id = cur.lastrowid
+    print("STARTED A SESSION")
     return id
 
 
@@ -52,6 +54,7 @@ def add_session_data(id, summary, score, input, filepath):
         conn.autocommit(True)
         with conn.cursor() as cur:
             cur.execute(stmt, data)
+    print("UPDATED A SESSION")
 
 def get_session_cycles(id):
     dotenv.load_dotenv()
@@ -66,6 +69,7 @@ def get_session_cycles(id):
         with conn.cursor() as cur:
             cur.execute(query, (id,))
             cycles = cur.fetchall()
+    print("RETRIEVED CYCLES FROM A SESSION")
     return cycles
 
 #1125899906842628
