@@ -1,29 +1,45 @@
 import React from 'react';
-import '../App.css'; // Import your CSS for styling
-import { Avatar, Card, Chip, Stack, Typography } from '@mui/material';
+import { Divider, LinearProgress, Stack, Typography } from '@mui/material';
 
-const Persona = (props: { id: number, imageSrc: string, title: string, score: number, description: string }) => {
-    // const sentiment = (score: number) => {
-    //     if (score > 75) {
-    //         return "#87EA94"
-    //     } else if (score < 30) {
-    //         return "#F67B72"
-    //     } else {
-    //         return "#F8E4C0"
-    //     }
-    // }
-
+const Persona = (props: { id: number, title: string, score: number, description: string }) => {
   return (
-    <Card elevation={2} square={false} sx={{width: "95%", p: "1rem", maxHeight:"80%", overflow: "auto", textAlign: "left"}}>
-      <Stack direction="row" justifyContent="space-between" sx={{ alignItems: "center", mb: ".5rem" }}>
-        <Stack direction="row" spacing={2} sx={{ alignItems: "center", mb: ".5rem" }}>
-            <Avatar alt="Remy Sharp" src={props.imageSrc} />
-            <Typography variant="body1">{props.title}</Typography>
-        </Stack>
-        <Chip label={props.score + "%"}/>
+    <>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 0.5 }}>
+        <Typography variant="subtitle1" sx={{ lineHeight: 1.2, mb: -1 }}>Persona {props.id}</Typography>
+        <Typography variant="subtitle1" sx={{ lineHeight: 1.2, mb: -1 }}>{props.score}% Positive</Typography>
       </Stack>
-      <Typography variant="body1">{props.description}</Typography>
-    </Card>
+      <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: -1 }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', flexGrow: 1, lineHeight: 1.2 }}>{props.title}</Typography>
+        <LinearProgress
+          variant="determinate"
+          value={props.score}
+          sx={{
+            width: '180px',
+            height: 6,
+            borderRadius: 5,
+            '& .MuiLinearProgress-bar': {
+              backgroundColor: '#487DE7',
+            },
+            backgroundColor: '#FF5D5D',
+          }}
+        />
+      </Stack>
+      <Typography
+        variant="body2"
+        sx={{
+          mt: ".15rem",
+          mb: "-1rem",
+          lineHeight: 1.2,
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          WebkitLineClamp: 2,
+        }}
+      >
+        {props.description}
+      </Typography>
+    </>
   );
 };
 
