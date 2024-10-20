@@ -250,7 +250,7 @@ const KeyPersonasCard = () => {
       <Typography variant="h6" sx={{ mb: ".5rem", fontWeight: 'bold'}}>
         Key Personas
       </Typography>
-      <Typography>Upload media to simulate user personas!</Typography>
+      {/* <Typography>Upload media to simulate user personas!</Typography> */}
       <Box
         component="img"
         src= {Illustration}
