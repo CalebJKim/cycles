@@ -1,8 +1,9 @@
-import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
-import React from "react";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+// import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+// import './App.css'
+// import React from "react";
 
-function ResponsiveAppBar() {
-
+const HeaderBar : React.FC = () => {
 	return (
         <AppBar position='sticky' sx={{ color: "red" }}>
             <Toolbar> 
@@ -17,4 +18,4 @@ function ResponsiveAppBar() {
         </AppBar>
 	);
 }
-export default ResponsiveAppBar;
+export default HeaderBar;
