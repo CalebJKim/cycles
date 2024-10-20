@@ -17,6 +17,7 @@ interface Cycle {
   pv: number;
   amt: number;
   //sessionId: number;
+  improvement: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -34,7 +35,8 @@ const Dashboard: React.FC = () => {
             score: tuple[2],
             cycle: "Cycle " + tuple[3],
             pv: 1000,
-            amt: 1000
+            amt: 1000,
+            improvement: tuple[5]
           }));
           setCycles(cyclesArray);
 
@@ -61,7 +63,7 @@ const Dashboard: React.FC = () => {
       </Box>
       <Box sx={{ width: "50%" }}>
         <GraphCard score={"80%"} data={cycles} />
-        <ImprovementsCard />
+        <ImprovementsCard data={cycles} />
       </Box>
     </Box>
   );

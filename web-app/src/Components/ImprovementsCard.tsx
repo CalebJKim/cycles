@@ -3,7 +3,11 @@ import { Paper, Stack, Typography, Button, Dialog, DialogContent, IconButton, Bo
 import CloseIcon from '@mui/icons-material/Close';
 import Analysis from './Analysis';
 
-const ImprovementsCard: React.FC = () => {
+interface ImprovementCardProps {
+  data: { cycle: string; score: number; pv: number; amt: number; improvement: string }[];
+}
+
+const ImprovementsCard: React.FC<ImprovementCardProps> = ({ data }) => {
   const analysis = [
     {
       point:
@@ -78,7 +82,7 @@ const ImprovementsCard: React.FC = () => {
             <Typography variant="h6" sx={{ fontFamily: 'Inter', fontWeight: 'bold' }}>
               Areas of Improvement
             </Typography>
-            <Analysis numPoints={4} truncate={{overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: "2", WebkitBoxOrient: "vertical"}} data={analysis} />
+            <Analysis numPoints={4} truncate={{overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: "2", WebkitBoxOrient: "vertical"}} data={data} />
           </Stack>
           <Button
             variant="contained"
@@ -129,7 +133,7 @@ const ImprovementsCard: React.FC = () => {
             Areas of Improvement
           </Typography>
           <Stack spacing={2} sx={{ mt: '1.5rem' }}>
-            {analysis.map((item, index) => (
+            {data.map((item, index) => (
               <Stack key={index} direction="row" alignItems="flex-start" spacing={1.5}>
                 <Box
                   sx={{
@@ -150,7 +154,7 @@ const ImprovementsCard: React.FC = () => {
                 </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ fontFamily: 'Inter', lineHeight: 1.6, mt: '12px' }}>
-                  {item.point}
+                  {item.improvement}
                 </Typography>
               </Stack>
             ))}

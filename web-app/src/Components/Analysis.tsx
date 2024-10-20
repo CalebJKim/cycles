@@ -15,7 +15,7 @@ import CycleGraph from "./CycleGraph";
 const Analysis = (props: {
   numPoints: number;
   truncate: { };
-  data: { point: string }[];
+  data: { cycle: string; score: number; pv: number; amt: number; improvement: string }[];
 }) => {
   return (
     <Stack spacing={1} alignItems="flex-start" sx={{ mb: "1.5rem" }}>
@@ -47,7 +47,7 @@ const Analysis = (props: {
             //   noWrap={props.truncate}
               sx={props.truncate}
             >
-              {points.point}{" "}
+              {points.improvement}{" "}
             </Typography>
           </Stack>
         ))}

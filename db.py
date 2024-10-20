@@ -19,6 +19,8 @@ def add_cycle_data(sessionID, summary, score, improvement, cycle):
     conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
     stmt = 'INSERT INTO cycles (Summary, Score, Improvement, Cycle, SessionID) VALUES (%s, %s, %s, %s, %s)'
     data = (summary, score, improvement, cycle, sessionID)
+    print("DATA FOR CYCLE: ")
+    print(data)
     with conn:
         conn.autocommit(True)
         with conn.cursor() as cur:
@@ -113,11 +115,11 @@ def get_session_personas(id):
 # add_cycle_data(my_session, "Dummy Cycle Summary 2", 0, 2)
 # add_session_data(my_session, "Dummy final summary", 0, "this is an input", "a filepath")
 
-dotenv.load_dotenv()
-user = os.getenv("SINGLE_STORE_USER")
-password = os.getenv("SINGLE_STORE_PASSWORD")
+# dotenv.load_dotenv()
+# user = os.getenv("SINGLE_STORE_USER")
+# password = os.getenv("SINGLE_STORE_PASSWORD")
 
-conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
+# conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
 
 
 # create_sessions_view = """
@@ -132,28 +134,28 @@ conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-s
 # FROM cycles;
 # # """
 
-with conn:
-    conn.autocommit(True)
-    with conn.cursor() as cur:
-        drop_table_query = """
-        DROP TABLE IF EXISTS personas;
-        """
+# with conn:
+#     conn.autocommit(True)
+#     with conn.cursor() as cur:
+#         drop_table_query = """
+#         DROP TABLE IF EXISTS personas;
+#         """
         
-        # Execute the drop table query
-        cur.execute(drop_table_query)
+#         # Execute the drop table query
+#         cur.execute(drop_table_query)
 
-        # SQL query to recreate the 'personas' table with 'session_id' as BIGINT
-        create_table_query = """
-        CREATE TABLE personas (
-            id BIGINT AUTO_INCREMENT PRIMARY KEY,
-            session_id BIGINT NOT NULL,
-            cycle_id INT NOT NULL,
-            title VARCHAR(255),
-            score TEXT,
-            description TEXT,
-            response TEXT
-        );
-        """
+#         # SQL query to recreate the 'personas' table with 'session_id' as BIGINT
+#         create_table_query = """
+#         CREATE TABLE personas (
+#             id BIGINT AUTO_INCREMENT PRIMARY KEY,
+#             session_id BIGINT NOT NULL,
+#             cycle_id INT NOT NULL,
+#             title VARCHAR(255),
+#             score TEXT,
+#             description TEXT,
+#             response TEXT
+#         );
+#         """
         
-        # Execute the create table query
-        cur.execute(create_table_query)
+#         # Execute the create table query
+#         cur.execute(create_table_query)

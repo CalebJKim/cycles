@@ -14,7 +14,7 @@ import ScoreIllustration from "../Images/Illustration.svg";
 
 const GraphBar = (props: {
   score: string;
-  data: { cycle: string; score: number; pv: number; amt: number }[];
+  data: { cycle: string; score: number; pv: number; amt: number; improvement: string }[];
 }) => {
   // { id, imageSrc, title, description }: { id: number; imageSrc: string; title: string; description: string }
   return (

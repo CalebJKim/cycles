@@ -69,11 +69,12 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
         """
     )
 
+    summary = response
     response3 = llm.invoke_manager(
-        """
+        f"""
         From the following summary of sentiments and details related to those sentiments, identify and extract the key areas of improvement denoted as specifically
         as possible, including everything from timestamps for videos, direct quotes from text, and detailing from images. These details will be used to address issues
-        in the media and mitigate the spread of harmful content for all viewers. You must respond with 1-2 sentences. 
+        in the media and mitigate the spread of harmful content for all viewers. You must respond with 1-2 sentences. Here is the summary: {summary}
         """
     )
 
@@ -86,6 +87,7 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
     if cycle_num == 1:
         d = (50-score)/2
         score += d
+    score = int(score)
     add_cycle_data(id, summary, score, improvement, cycle_num)
     #add summary + sentiment score to database
     print("SUMMARY: " + summary)
