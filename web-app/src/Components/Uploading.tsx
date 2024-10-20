@@ -4,10 +4,13 @@ import axios from 'axios';
 const FileAndTextUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [fileName, setFileName] = useState<string>("");
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
+      setFileName(e.target.files[0].name); // Display file name
     }
   };
 
@@ -17,38 +20,43 @@ const FileAndTextUpload: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true); // Show loading state
     const formData = new FormData();
+    
     if (file) {
       formData.append('file', file);
     }
     formData.append('text', text);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/arena', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post('http://localhost:5000/api/arena', formData); // Removed custom headers
       console.log('File and text uploaded successfully', response.data);
+      // Optionally clear form after submission
+      setFile(null);
+      setText("");
+      setFileName("");
     } catch (error) {
       console.error('Error uploading the file and text', error);
+    } finally {
+      setIsSubmitting(false); // Remove loading state
     }
   };
 
   return (
     <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
+      <form onSubmit={handleSubmit} style={styles.form} encType="multipart/form-data">
         {/* File Upload */}
         <div style={styles.uploadArea}>
           <input type="file" onChange={handleFileChange} style={styles.fileInput} />
           <p style={styles.uploadText}>Upload an image or video</p>
+          {fileName && <p style={styles.fileName}>Selected file: {fileName}</p>}
         </div>
 
         {/* Separator line */}
         <div style={styles.separatorLine}></div>
 
         {/* Text Input */}
-        <textarea 
+        <textarea
           value={text}
           onChange={handleTextChange}
           placeholder="Describe your media (This podcast is about...)"
@@ -56,7 +64,9 @@ const FileAndTextUpload: React.FC = () => {
         />
 
         {/* Submit Button */}
-        <button type="submit" style={styles.submitButton}>Generate Market Simulation</button>
+        <button type="submit" style={styles.submitButton} disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Generate Market Simulation'}
+        </button>
       </form>
     </div>
   );
@@ -102,6 +112,11 @@ const styles = {
   uploadText: {
     fontSize: '16px',
     color: '#888',
+  },
+  fileName: {
+    fontSize: '14px',
+    color: '#444',
+    marginTop: '10px',
   },
   separatorLine: {
     height: '1px',
