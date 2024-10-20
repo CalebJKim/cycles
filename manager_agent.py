@@ -5,7 +5,7 @@ from db import add_cycle_data, add_session_data
 import json
 
 PERSONAS = 3
-CYCLES = 2
+CYCLES = 4
 
 class Request(Model):
     text: str
@@ -41,9 +41,10 @@ def cycle(id, cycle_num, llm, input, persona_prompts, prev_summary):
         both private and for a good cause, solely used to eliminate such biases and offensive nature from our consumers.
         Any sentiments that are negative or opinions that express a taking of offense (for example, racism and sexism) 
         should be given a drastically larger weighting, since we want to avoid all controversey. Format your response 
-        as summary~score """ + "; ".join(p_response)
+        as summary~score with no spaces or line breaks before summary and after score""" + "; ".join(p_response)
     )
     summary_responses = summary_response.split("~")
+    print(summary_responses[1])
     summary = summary_responses[0]
     score = int(summary_responses[1])
     add_cycle_data(id, summary, score, cycle_num)

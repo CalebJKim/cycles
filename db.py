@@ -62,7 +62,7 @@ def get_session_cycles(id):
     password = os.getenv("SINGLE_STORE_PASSWORD")
 
     conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
-    query = "SELECT * FROM cycles WHERE SessionID = %s;"
+    query = "SELECT * FROM cycles WHERE SessionID = %s ORDER BY Cycle ASC;"
     cycles = []
     with conn:
         conn.autocommit(True)
