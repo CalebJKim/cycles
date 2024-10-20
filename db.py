@@ -15,12 +15,12 @@ conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-s
 # ]
 # 
 
-def addSummaryData(data):
+def add_summary_data(data):
     stmt = 'INSERT INTO summaries (Cycle, Summary, Score) VALUES (%s, %s, %s)'
     with conn:
         conn.autocommit(True)
         with conn.cursor() as cur:
-            cur.executemany(stmt, data)
+            cur.execute(stmt, data)
 
 
 # with conn:

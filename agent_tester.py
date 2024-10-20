@@ -1,6 +1,6 @@
 import requests
 
-r = requests.post("http://localhost:8000/rest/post", json={ "text": "Tell me a funny story"}, headers={"Content-Type": "application/json"})
+r = requests.post("http://localhost:8000/manager/post", json={ "text": "Ching Chong!! There is a new Rocket League season upon us! Introducing the elements of fire and water, along with a new Chinese New Year Themed map, Forbidden Temple!", "file": "./uploads/rl_season.jpg" }, headers={"Content-Type": "application/json"})
 
 print(r)
 if r.status_code == 200:
