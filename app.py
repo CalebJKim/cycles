@@ -7,7 +7,10 @@ from db import get_session_cycles, start_session
 app = Flask(__name__)
 CORS(app)
 
-app.config['UPLOAD_FOLDER'] = '.\\uploads'
+app.config['UPLOAD_FOLDER'] = 'uploads'
+
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
 
 id = -1
 
