@@ -13,6 +13,9 @@ id = -1
 
 @app.route('/api/cycles', methods=['GET'])
 def get_data():
+    if id == -1:
+        data = {'message': []}
+        return jsonify(data)
     cycles = get_session_cycles(id)
     data = {'message': cycles}
     return jsonify(data)
@@ -33,9 +36,9 @@ def handle_post():
                       json={ "text": prompt, "file": filepath, "id": id }, 
                       headers={"Content-Type": "application/json"})
     if r.status_code != 200:
-        print("ALERT ALERT ALERT ERROR")
+        return jsonify({"message": "File and text uploaded unsuccessfully :(((("}), 200
     else:
-        print("BAD BAD BAD BAD BAD INVALID FORMAT")
+        return jsonify({"message": "File and text uploaded successfully"}), 200
 
 
 if __name__ == '__main__':

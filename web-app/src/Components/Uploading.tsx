@@ -1,11 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const FileAndTextUpload: React.FC = () => {
+const Uploading: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -35,6 +37,8 @@ const FileAndTextUpload: React.FC = () => {
       setFile(null);
       setText("");
       setFileName("");
+
+      navigate('/');
     } catch (error) {
       console.error('Error uploading the file and text', error);
     } finally {
@@ -65,7 +69,7 @@ const FileAndTextUpload: React.FC = () => {
 
         {/* Submit Button */}
         <button type="submit" style={styles.submitButton} disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Generate Market Simulation'}
+          {isSubmitting ? 'Submitting...' : 'Simulate Results'}
         </button>
       </form>
     </div>
@@ -144,4 +148,4 @@ const styles = {
   },
 };
 
-export default FileAndTextUpload;
+export default Uploading;

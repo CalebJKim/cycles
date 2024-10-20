@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Uploader from './Components/Uploading';
 import axios from 'axios';
 import Dashboard from './Pages/Dashboard';
 import './App.css'
@@ -21,7 +20,6 @@ const Home: React.FC = () => {
     <div className="App">
          {/* <p>Data from Flask: {apiData}</p> */}
         <Dashboard />
-        {/* <Uploader /> */}
     </div>
   )
 
