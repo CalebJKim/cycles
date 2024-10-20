@@ -85,6 +85,7 @@ const ImprovementsCard: React.FC = () => {
             onClick={seeMore}
             sx={{
               mt: 'auto',
+              fontWeight: 'bold',
               alignSelf: 'flex-end',
               borderRadius: '20px',
               backgroundColor: '#487DE7',
@@ -127,7 +128,7 @@ const ImprovementsCard: React.FC = () => {
           <Typography variant="h6" sx={{ fontFamily: 'Inter', fontWeight: 'bold', mb: ".5rem" }}>
             Areas of Improvement
           </Typography>
-          <Stack spacing={2}>
+          <Stack spacing={2} sx={{ mt: '1.5rem' }}>
             {analysis.map((item, index) => (
               <Stack key={index} direction="row" alignItems="flex-start" spacing={1.5}>
                 <Box
@@ -144,7 +145,9 @@ const ImprovementsCard: React.FC = () => {
                     flexShrink: 0
                   }}
                 >
+                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                   {index + 1}
+                </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ fontFamily: 'Inter', lineHeight: 1.6, mt: '12px' }}>
                   {item.point}

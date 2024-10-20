@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import CycleGraph from "./CycleGraph";
+import ScoreIllustration from "../Images/Illustration.svg";
 
 const GraphBar = (props: {
   score: string;
