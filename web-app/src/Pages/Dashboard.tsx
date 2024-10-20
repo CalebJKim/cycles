@@ -15,6 +15,7 @@ interface Cycle {
   amt: number;
   //sessionId: number;
 }
+import SentimentScoreCard from "../Components/InitialSentiment";
 
 const Dashboard: React.FC = () => {
 
@@ -44,9 +45,12 @@ const Dashboard: React.FC = () => {
     <Box sx={{ display: "flex", direction: "row", backgroundColor:"#f9f9f9" }}>
       <Box sx={{ width: "50%" }}>
         <GraphCard score={"80%"} data={cycles} />
+      
+        <SentimentScoreCard score = {20} fullText = "This is just placeholder text. This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text."/>
         <KeyPersonasCard />
       </Box>
       <Box sx={{ width: "50%" }}>
+        <GraphCard score={"80%"} data={cycles} />
         <InfoCard />
       </Box>
     </Box>
