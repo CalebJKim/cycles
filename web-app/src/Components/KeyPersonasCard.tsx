@@ -10,9 +10,11 @@ import {
   Paper,
   Stack,
   Typography,
+  Box
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import Illustration from "../Images/Illustration.svg"
 
 interface Persona {
   title: string;
@@ -105,7 +107,7 @@ const KeyPersonasCard = () => {
         borderRadius: "15px",
       }}
     >
-      <Typography variant="h6" sx={{ mb: ".5rem" }}>
+      <Typography variant="h6" sx={{ mb: ".5rem", fontWeight: 'bold' }}>
         Key Personas
       </Typography>
       <Stack spacing={2}>
@@ -245,10 +247,15 @@ const KeyPersonasCard = () => {
         borderRadius: "15px",
       }}
     >
-      <Typography variant="h6" sx={{ mb: ".5rem" }}>
+      <Typography variant="h6" sx={{ mb: ".5rem", fontWeight: 'bold'}}>
         Key Personas
       </Typography>
-      <Typography>Upload media to simulate user personas</Typography>
+      <Typography>Upload media to simulate user personas!</Typography>
+      <Box
+        component="img"
+        src= {Illustration}
+        sx={{ width: '60%', mt: 7, ml: 12, borderRadius: '8px' }}
+      />
     </Paper>
   );
 };

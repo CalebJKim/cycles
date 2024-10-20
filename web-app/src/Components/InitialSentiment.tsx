@@ -4,6 +4,7 @@ import { CircularGraph } from './circulargraph';
 import Summary from './Summary';
 import axios from "axios";
 import Analysis from './Analysis';
+import ScoreIllustration from "../Images/ScoreIllustration.svg";
 
 interface SentimentScoreCardProps {
   data: { summary: string; score: number; cycle: string; }[];
@@ -108,7 +109,7 @@ const SentimentScoreCard: React.FC<SentimentScoreCardProps> = ({ data, score }) 
   </Dialog>
   </>
   :
-  <Paper variant="outlined" sx={{ borderRadius: "15px", margin: "1rem", width: '95%', p: "1.5rem"}}>
+  <Paper variant="outlined" sx={{ borderRadius: "15px", margin: "1rem", width: '95%', p: "1.5rem" }}>
       <Typography variant="h6" fontWeight="bold" gutterBottom>
         Overall Sentiment Score
       </Typography>
@@ -116,10 +117,16 @@ const SentimentScoreCard: React.FC<SentimentScoreCardProps> = ({ data, score }) 
         <Box ref={circleRef} sx={{ mr: 3 }}>
           <CircularGraph percentage={0} />
         </Box>
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: 120, justifyContent: 'space-between' }}>
-          <Typography ref={textRef} variant="body2" sx={{ mb: 1, flex: 1, overflow: 'hidden' }}>
+        <Box sx={{ ml: 20, mt: -4}}>
+          <Typography ref={textRef} variant="body2" sx={{ mb: 1 }}>
             Upload media to simulate user sentiment cycles!
           </Typography>
+          <Box
+            component="img"
+            src={ScoreIllustration}
+            alt="Score Illustration"
+            sx={{ width: '90%', mt: 2, borderRadius: '8px' }}
+          />
         </Box>
       </Box>
     </Paper>
