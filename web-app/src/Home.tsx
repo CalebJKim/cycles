@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SafetyScoreDashboard from './SafetyScoreOverview/SafetyScoreDashboard';
+import Uploader from './Components/Uploading';
 import axios from 'axios';
 
 const Home: React.FC = () => {
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
   return (
     <div>
          {/* <p>Data from Flask: {apiData}</p> */}
-        <SafetyScoreDashboard />
+        <Uploader />
     </div>
   )
 
