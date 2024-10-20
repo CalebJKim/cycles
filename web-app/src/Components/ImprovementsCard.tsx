@@ -64,7 +64,7 @@ const ImprovementsCard: React.FC = () => {
           width: "95%",
           p: "1.5rem",
           margin: "1rem",
-          maxHeight: "44%",
+          maxHeight: "45.42%",
           overflow: "hidden",
           textAlign: "left",
         }}
