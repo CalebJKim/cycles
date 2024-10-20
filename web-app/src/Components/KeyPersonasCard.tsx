@@ -81,8 +81,8 @@ const KeyPersonasCard = () => {
   };
 
   return (
-    <Paper variant="outlined" sx={{ width: "95%", p: "1.5rem", margin: "1rem", maxHeight: "60%", overflow: "auto", textAlign: "left", borderRadius: "15px" }}>
-        <Typography variant="h6" sx={{ mb: ".5rem" }}>Key Personas</Typography>
+    <Paper variant="outlined" sx={{ width: "96.5%", p: "1.5rem", mb: "2rem", ml: "1rem", height: 0.61, maxHeight: "100%", overflow: "hidden", textAlign: "left", borderRadius: "15px" }}>
+        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: ".5rem" }}>Key Personas</Typography>
         <Stack spacing={2}>
           {personas.slice(0, 3).map((persona, index) => (
               <React.Fragment key={index}>
@@ -171,7 +171,7 @@ const KeyPersonasCard = () => {
                       '& .MuiLinearProgress-bar': {
                         backgroundColor: '#487DE7',
                       },
-                      backgroundColor: '#FF5D5D',
+                      backgroundColor: '#CCCCCC',
                     }}
                   />
                 </Stack>

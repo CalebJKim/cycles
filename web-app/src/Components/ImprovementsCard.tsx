@@ -1,52 +1,37 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Chip,
-  Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Paper,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import CycleGraph from "./CycleGraph";
-import Analysis from "./Analysis";
+import React, { useEffect, useRef, useState } from 'react';
+import { Paper, Stack, Typography, Button, Dialog, DialogContent, IconButton, Box } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import Analysis from './Analysis';
 
 const ImprovementsCard: React.FC = () => {
   const analysis = [
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Gender Representation: A portion of the audience pointed out that the ad featured predominantly male athletes, raising concerns about the lack of strong female representation in key moments, which might be perceived as not fully embracing gender equality.",
     },
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlsd flasdkdjf l lskdjf ksj sdfkl jsdkfj ksdf kjsd fkjalkj f fewj ksdjf kjsd lsdjkf ksdjf ksd j kssd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l ajfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Cultural Sensitivity: Some viewers expressed concern over the use of certain cultural symbols and practices in the background of the ad, feeling they were presented without proper context, potentially leading to accusations of cultural appropriation.",
     },
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Overused Visual Tropes: The scenes featuring athletes running through urban streets were noted as repetitive and too similar to prior Nike campaigns, which made the ad feel less original.",
     },
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Disconnected Voiceover: While the voiceover conveyed a powerful message, a few viewers felt the tone didn’t match the visuals, making parts of the narration feel out of sync with the emotional journey on screen.",
     },
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Gender Representation: A portion of the audience pointed out that the ad featured predominantly male athletes, raising concerns about the lack of strong female representation in key moments, which might be perceived as not fully embracing gender equality.",
     },
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlas.dfkm askjd  lskdjf l lskdjf ksj sdfkl jsdkfj ksdf kjsd fkjalkj f fewj ksdjf kjsd lsdjkf ksdjf ksd j kssd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Gender Representation: A portion of the audience pointed out that the ad featured predominantly male athletes, raising concerns about the lack of strong female representation in key moments, which might be perceived as not fully embracing gender equality.",
     },
     {
       point:
-        "alksdjflksjdfkj alksdjfk ajlsd flasdjfl kjoiwej wajefojqop jdvkjc,m adf js jqo  pqeo jka kdjflk sw hoe l aioj ef",
+        "Gender Representation: A portion of the audience pointed out that the ad featured predominantly male athletes, raising concerns about the lack of strong female representation in key moments, which might be perceived as not fully embracing gender equality.",
     },
   ];
 
@@ -74,13 +59,11 @@ const ImprovementsCard: React.FC = () => {
     <>
       <Paper
         variant="outlined"
-        square={false}
         sx={{
           borderRadius: "15px",
           width: "95%",
           p: "1.5rem",
           margin: "1rem",
-          minHeight: "44%",
           maxHeight: "44%",
           overflow: "hidden",
           textAlign: "left",
@@ -92,22 +75,32 @@ const ImprovementsCard: React.FC = () => {
             alignItems="flex-start"
             sx={{ textAlign: "left", mb: "1rem" }}
           >
-            <Typography variant="h6" fontWeight="bold">
+            <Typography variant="h6" sx={{ fontFamily: 'Inter', fontWeight: 'bold' }}>
               Areas of Improvement
             </Typography>
-            <Analysis numPoints={3} truncate={{overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: "2",
-                WebkitBoxOrient: "vertical"}} data={analysis} />
+            <Analysis numPoints={4} truncate={{overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: "2", WebkitBoxOrient: "vertical"}} data={analysis} />
           </Stack>
-          <Chip
-            label="See More"
-            variant="outlined"
-            size="small"
+          <Button
+            variant="contained"
             onClick={seeMore}
-            sx={{ alignItems: "center", pl: ".5rem", pr: ".5rem" }}
-          />
+            sx={{
+              mt: 'auto',
+              alignSelf: 'flex-end',
+              borderRadius: '20px',
+              backgroundColor: '#487DE7',
+              color: 'white',
+              padding: '4px 12px',
+              fontSize: '12px',
+              textTransform: 'none',
+              boxShadow: 'none',
+              '&:hover': {
+                backgroundColor: '#3a6dbf',
+                boxShadow: 'none',
+              },
+            }}
+          >
+            See More
+          </Button>
         </Stack>
       </Paper>
       <Dialog
@@ -116,27 +109,53 @@ const ImprovementsCard: React.FC = () => {
         scroll={"paper"}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
-        PaperProps = {{sx : { width: "100%"}}}
+        PaperProps={{ sx: { width: '70vw', height: '80vh', maxWidth: 'none', borderRadius: '15px' } }}
       >
-        <DialogTitle id="scroll-dialog-title">Areas of Improvement</DialogTitle>
         <DialogContent dividers={true}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            ref={descriptionElementRef}
-            tabIndex={-1}
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
           >
-            <Analysis
-              numPoints={analysis.length}
-              truncate={{}}
-              data={analysis}
-            />
-          </DialogContentText>
+            <CloseIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ fontFamily: 'Inter', fontWeight: 'bold', mb: ".5rem" }}>
+            Areas of Improvement
+          </Typography>
+          <Stack spacing={2}>
+            {analysis.map((item, index) => (
+              <Stack key={index} direction="row" alignItems="flex-start" spacing={1.5}>
+                <Box
+                  sx={{
+                    fontFamily: 'Inter',
+                    fontWeight:'bold',
+                    bgcolor:'#f0f0f0',
+                    borderRadius:'50%',
+                    width:'32px',
+                    height:'32px',
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    flexShrink: 0
+                  }}
+                >
+                  {index + 1}
+                </Box>
+                <Typography variant="body2" sx={{ fontFamily: 'Inter', lineHeight: 1.6, mt: '12px' }}>
+                  {item.point}
+                </Typography>
+              </Stack>
+            ))}
+          </Stack>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
       </Dialog>
     </>
   );
 };
+
 export default ImprovementsCard;

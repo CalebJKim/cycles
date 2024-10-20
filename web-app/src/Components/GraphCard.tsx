@@ -28,7 +28,7 @@ const GraphBar = (props: {
       }}
     >
       <Typography variant="h6" fontWeight="bold">
-        How does sentiment change over time?
+        Sentiment Evolution
       </Typography>
       <CycleGraph data={props.data} />
     </Paper>
