@@ -95,7 +95,7 @@ const KeyPersonasCard = () => {
     <Paper
       variant="outlined"
       sx={{
-        width: "95%",
+        width: "96.5%",
         p: "1.5rem",
         margin: "1rem",
         maxHeight: "62.8%",

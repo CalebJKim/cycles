@@ -20,7 +20,7 @@ const Persona = (props: { id: number, title: string, score: number, description:
             '& .MuiLinearProgress-bar': {
               backgroundColor: '#487DE7',
             },
-            backgroundColor: '#FF5D5D',
+            backgroundColor: '#CCCCCC',
           }}
         />
       </Stack>

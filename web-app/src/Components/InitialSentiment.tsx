@@ -57,7 +57,7 @@ const SentimentScoreCard: React.FC<SentimentScoreCardProps> = ({ data, score }) 
   return (
     data.length !== 0 ?
     <>
-    <Paper variant="outlined" sx={{ borderRadius: "15px", margin: "1rem", width: '95%', p: "1.5rem"}}>
+    <Paper variant="outlined" sx={{ borderRadius: "15px", margin: "1rem", width: '96.5%', p: "1.5rem"}}>
       <Typography variant="h6" fontWeight="bold" gutterBottom>
         Overall Sentiment Score
       </Typography>
