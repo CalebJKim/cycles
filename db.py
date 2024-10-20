@@ -83,11 +83,11 @@ def get_session_cycles(id):
 # add_cycle_data(my_session, "Dummy Cycle Summary 2", 0, 2)
 # add_session_data(my_session, "Dummy final summary", 0, "this is an input", "a filepath")
 
-# dotenv.load_dotenv()
-# user = os.getenv("SINGLE_STORE_USER")
-# password = os.getenv("SINGLE_STORE_PASSWORD")
+dotenv.load_dotenv()
+user = os.getenv("SINGLE_STORE_USER")
+password = os.getenv("SINGLE_STORE_PASSWORD")
 
-# conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
+conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
 
 
 # create_sessions_view = """
@@ -100,9 +100,9 @@ def get_session_cycles(id):
 # CREATE VIEW cycles_view AS
 # SELECT ID, Summary, Score, Cycle, SessionID
 # FROM cycles;
-# """
+# # """
 
 # with conn:
 #     conn.autocommit(True)
 #     with conn.cursor() as cur:
-#         cur.execute("DROP TABLE summaries")
+#         cur.execute("CREATE TABLE summaries")

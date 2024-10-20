@@ -7,7 +7,7 @@ from db import get_session_cycles, start_session
 app = Flask(__name__)
 CORS(app)
 
-app.config['UPLOAD_FOLDER'] = './uploads'
+app.config['UPLOAD_FOLDER'] = '.\\uploads'
 
 id = -1
 
@@ -24,7 +24,7 @@ def get_data():
 def handle_post():
     global id
     prompt = request.form.get('text')
-    filepath = ''
+    file_path = ''
     if 'file' in request.files:
         file = request.files['file']
         if file.filename != '':
@@ -33,7 +33,7 @@ def handle_post():
                 file.save(file_path)
     id = start_session()
     r = requests.post("http://localhost:8000/manager/post", 
-                      json={ "text": prompt, "file": filepath, "id": id }, 
+                      json={ "text": prompt, "file": file_path, "id": id }, 
                       headers={"Content-Type": "application/json"})
     if r.status_code != 200:
         return jsonify({"message": "File and text uploaded unsuccessfully :(((("}), 200
