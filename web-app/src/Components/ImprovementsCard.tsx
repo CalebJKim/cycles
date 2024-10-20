@@ -53,7 +53,6 @@ const ImprovementsCard: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   const seeMore = () => {
-    console.log("mannn");
     setOpen(true);
   };
 
@@ -77,12 +76,12 @@ const ImprovementsCard: React.FC = () => {
         variant="outlined"
         square={false}
         sx={{
-          borderRadius: "2%",
+          borderRadius: "15px",
           width: "95%",
           p: "1.5rem",
           margin: "1rem",
-          minHeight: "25%",
-          maxHeight: "25%",
+          minHeight: "44%",
+          maxHeight: "44%",
           overflow: "hidden",
           textAlign: "left",
         }}
@@ -117,6 +116,7 @@ const ImprovementsCard: React.FC = () => {
         scroll={"paper"}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
+        PaperProps = {{sx : { width: "100%"}}}
       >
         <DialogTitle id="scroll-dialog-title">Areas of Improvement</DialogTitle>
         <DialogContent dividers={true}>

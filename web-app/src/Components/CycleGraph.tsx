@@ -2,14 +2,14 @@ import { AppBar, Box, Button, Container, Stack, Toolbar, Typography } from "@mui
 import React from "react";
 import { Link } from 'react-router-dom';
 import Persona from "../SafetyScoreOverview/Persona";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, ResponsiveContainer, Area, Label } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, ResponsiveContainer, Area, Label, ReferenceLine } from 'recharts';
 
 const CycleGraph = (props: {data: { cycle: string; score: number; pv: number; amt: number; }[]}) => {
 
 	return (
         <AreaChart
           width={600}
-          height={230}
+          height={290}
           data={props.data}
           margin={{
             top: 30,
@@ -25,10 +25,9 @@ const CycleGraph = (props: {data: { cycle: string; score: number; pv: number; am
             </linearGradient>
         </defs>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="cycle">
-            <Label value="Cycles" offset={-15} position="insideBottom" />
-          </XAxis>
+          <XAxis dataKey="cycle" label={{value: "Cycles", offset: "-15", position: "insideBottom"}} />
           <YAxis label={{ value: 'Sentiment Analysis', angle: -90, position: 'insideBottomLeft' }} domain={[0, 100]}/>
+          <ReferenceLine y={50} label="Neutral Sentiment" strokeDasharray="3 3" />
           <Tooltip />
           <Area type="monotone" dataKey="score" stroke="#487DE7" fill="url(#colorscore)" />
         </AreaChart>

@@ -2,11 +2,11 @@ import React from 'react';
 
 interface CircularGraphProps {
   percentage: number;
-  sentiment: string;
+  // sentiment: string;
   size?: number;
 }
 
-export const CircularGraph: React.FC<CircularGraphProps> = ({ percentage, sentiment, size = 100 }) => {
+export const CircularGraph: React.FC<CircularGraphProps> = ({ percentage, size = 140 }) => {
   const strokeWidth = size * 0.1;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -35,13 +35,23 @@ export const CircularGraph: React.FC<CircularGraphProps> = ({ percentage, sentim
       />
       <text
         x="50%"
-        y="50%"
+        y="40%"
         textAnchor="middle"
         dy=".3em"
         fontSize={`${size * 0.2}px`}
         fontWeight="bold"
       >
-        {percentage}%
+        {percentage}% 
+      </text>
+      <text
+        x="50%"
+        y="60%"
+        textAnchor="middle"
+        dy=".3em"
+        fontSize={`${size * 0.15}px`}
+        fontWeight="bold"
+      >
+        Positive
       </text>
     </svg>
   );

@@ -32,7 +32,7 @@ const InfoCard: React.FC = () => {
       <Typography variant="h6" fontWeight="bold">
         Report
       </Typography>
-      <Summary />
+      {/* <Summary numSummaries={1} /> */}
       {/* <Analysis /> */}
       {/* <ImprovementsCard /> */}
     </Paper>
