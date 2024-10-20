@@ -8,3 +8,6 @@ rl_clip.mov
 private_keys.json
 
 uploads/*
+
+.DS_Store
+.zshrc
