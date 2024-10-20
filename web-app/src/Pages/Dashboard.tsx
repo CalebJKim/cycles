@@ -6,11 +6,12 @@ import KeyPersonasCard from "../Components/KeyPersonasCard";
 import InfoCard from "../Components/InfoCard";
 import axios from 'axios'
 import SentimentScoreCard from "../Components/InitialSentiment";
+import ImprovementsCard from "../Components/ImprovementsCard";
 
 
 interface Cycle {
   //id: number;
-  //summary: string;
+  summary: string;
   score: number;
   cycle: string;
   pv: number;
@@ -21,7 +22,9 @@ interface Cycle {
 const Dashboard: React.FC = () => {
 
   const [cycles, setCycles] = useState<Cycle[]>([]);
+  const [summaries, setSummaries] = useState<Cycle[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [score, setScore] = useState(0);
   useEffect(() => {
     // Make the API call to Flask backend
     const fetchData = () => {
@@ -34,6 +37,14 @@ const Dashboard: React.FC = () => {
             amt: 1000
           }));
           setCycles(cyclesArray);
+
+          let arr: Cycle[] = response.data.message.map((tuple: any) => ({ summary: tuple[1], score: tuple[2], cycle: tuple[3]}));
+          let rArr = arr.reverse()
+          setSummaries(rArr);
+
+          if (arr.length !== 0) {
+            setScore(arr[0].score)
+          }
         })
         .catch(error => setError(error.message));
     }
@@ -45,14 +56,12 @@ const Dashboard: React.FC = () => {
   return (
     <Box sx={{ display: "flex", direction: "row", backgroundColor:"#f9f9f9" }}>
       <Box sx={{ width: "50%" }}>
-        <GraphCard score={"80%"} data={cycles} />
-      
-        <SentimentScoreCard score = {20} fullText = "This is just placeholder text. This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text.This is just placeholder text."/>
+        <SentimentScoreCard data={summaries} score = {score}/>
         <KeyPersonasCard />
       </Box>
       <Box sx={{ width: "50%" }}>
         <GraphCard score={"80%"} data={cycles} />
-        <InfoCard />
+        <ImprovementsCard />
       </Box>
     </Box>
   );

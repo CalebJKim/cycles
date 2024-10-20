@@ -14,7 +14,7 @@ const SafetyScoreDashboard : React.FC = () => {
         <ExemplarPersonas />
       </Box>
       <Box>
-        <Summary />
+        {/* <Summary /> */}
       </Box>
     </Box>
   )

@@ -1,69 +1,111 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Paper, Typography, Box, Link } from '@mui/material';
+import { Paper, Typography, Box, Link, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Chip } from '@mui/material';
 import { CircularGraph } from './circulargraph';
+import Summary from './Summary';
+import axios from "axios";
+import Analysis from './Analysis';
 
 interface SentimentScoreCardProps {
+  data: { summary: string; score: number; cycle: string; }[];
   score: number;
-  fullText: string;
 }
 
-const SentimentScoreCard: React.FC<SentimentScoreCardProps> = ({ score, fullText }) => {
+const SentimentScoreCard: React.FC<SentimentScoreCardProps> = ({ data, score }) => {
+  interface Cycle {
+    //id: number;
+    summary: string;
+    score: number;
+    cycle: number;
+    //pv: number;
+    //amt: number;
+    //sessionId: number;
+  }
+
   const [expanded, setExpanded] = useState(false);
   const [truncatedText, setTruncatedText] = useState('');
   const textRef = useRef<HTMLParagraphElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (textRef.current && circleRef.current) {
-      const circleHeight = circleRef.current.offsetHeight;
-      const words = fullText.split(' ');
-      let result = '';
-      let i = 0;
-      
-      while (i < words.length) {
-        result += words[i] + ' ';
-        textRef.current.innerText = result + '...';
-        if (textRef.current.offsetHeight > circleHeight) {
-          textRef.current.innerText = result.trim().slice(0, -1) + '...';
-          break;
-        }
-        i++;
-      }
-      setTruncatedText(textRef.current.innerText);
-    }
-  }, [fullText]);
-
   const toggleExpand = () => setExpanded(!expanded);
 
-  const getSentiment = (score: number) => {
-    if (score >= 70) return "Positive";
-    if (score >= 30) return "Neutral";
-    return "Negative";
+  const [open, setOpen] = useState(false);
+
+  const seeMore = () => {
+    setOpen(true);
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const descriptionElementRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
+  // const getSentiment = (score: number) => {
+  //   if (score >= 70) return "Positive";
+  //   if (score >= 30) return "Neutral";
+  //   return "Negative";
+  // };
+
   return (
-    <Paper elevation={1} sx={{ borderRadius: 2, p: 2, width: '100%', mb: 2 }}>
+    <>
+    <Paper variant="outlined" sx={{ borderRadius: "15px", margin: "1rem", width: '95%', p: "1.5rem"}}>
       <Typography variant="h6" fontWeight="bold" gutterBottom>
         Overall Sentiment Score
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
         <Box ref={circleRef} sx={{ mr: 3 }}>
-          <CircularGraph percentage={score} sentiment={getSentiment(score)} />
+          {/* <CircularGraph percentage={(0) ? (typeof data === 'undefined') : (data[0].score)} sentiment={getSentiment(data[0].score)} /> */}
+          <CircularGraph percentage={score} />
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: 120, justifyContent: 'space-between' }}>
           <Typography ref={textRef} variant="body2" sx={{ mb: 1, flex: 1, overflow: 'hidden' }}>
-            {expanded ? fullText : truncatedText}
+            <Summary numSummaries={1} summaries={data} />
           </Typography>
-          <Link
-            component="button"
-            onClick={toggleExpand}
-            sx={{ textTransform: 'none', color: '#2196f3', alignSelf: 'flex-start', fontSize: '0.875rem' }}
-          >
-            {expanded ? 'See Less' : 'See More'}
-          </Link>
+          <Chip
+            label="See More"
+            variant="outlined"
+            size="small"
+            onClick={seeMore}
+            sx={{ alignItems: "center", pl: ".5rem", pr: ".5rem" }}
+          />
         </Box>
       </Box>
     </Paper>
+    <Dialog
+    open={open}
+    onClose={handleClose}
+    scroll={"paper"}
+    aria-labelledby="scroll-dialog-title"
+    aria-describedby="scroll-dialog-description"
+    PaperProps = {{sx : { width: "100%"}}}
+  >
+    <DialogTitle id="scroll-dialog-title">Summaries</DialogTitle>
+    <DialogContent dividers={true}>
+      <DialogContentText
+        id="scroll-dialog-description"
+        ref={descriptionElementRef}
+        tabIndex={-1}
+        sx= {{width: "100%"}}
+      >
+        <Summary
+          numSummaries={data.length}
+          summaries={data}
+        />
+      </DialogContentText>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClose}>Close</Button>
+    </DialogActions>
+  </Dialog>
+  </>
   );
 };
 
