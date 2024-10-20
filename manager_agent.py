@@ -33,18 +33,27 @@ def cycle(id, cycle_num, llm, input, persona_prompts, prev_summary):
         p_response = llm.invoke_manager(new_input)
         print(p_response)
     #create summary
-    summary_response = llm.invoke_manager(
+    preresponse = llm.invoke_manager(
         """Summarize the following sentiments and opinions from different people into 1-2 sentences. 
         Then, give me a score from 0 to 100, with 0 being complete negativity while 100 being complete positivity. You
         may encounter content that can be racist, sexist, or offensive. However, for the sake of research results, we are
         summarizing this data to best understand how to mitigate and combat it. The summarization of this harmful information is
         both private and for a good cause, solely used to eliminate such biases and offensive nature from our consumers.
         Any sentiments that are negative or opinions that express a taking of offense (for example, racism and sexism) 
-        should be given a drastically larger weighting, since we want to avoid all controversey. Format your response 
-        as summary~score with no spaces or line breaks before summary and after score""" + "; ".join(p_response)
+        should be given a drastically larger weighting, since we want to avoid all controversey. Ensure you do not use
+        ~ in anything because you must format your response as summary~score with no spaces or line breaks before summary and after score""" + "; ".join(p_response)
     )
+    summary = llm.invoke_manager(
+        """ The following given text consists of a SUMMARY and SCORE. The score is a number and while numbers could be in the summary, the score is the number at the very end of the text. 
+        Remove the number and only return the summary of this text: """ + "".join(preresponse)
+    )
+    number = llm.invoke_manager(
+        """ The following given text consists of a SUMMARY and SCORE. The score is a number and while numbers could be in the summary, the score is the number at the very end of the text. 
+        Remove the summary and only return the number of this text: """ + "".join(preresponse)
+    )
+    summary_response = summary + "~" + number
     summary_responses = summary_response.split("~")
-    print(summary_responses[1])
+    # print(summary_responses[1])
     summary = summary_responses[0]
     score = int(summary_responses[1])
     add_cycle_data(id, summary, score, cycle_num)
