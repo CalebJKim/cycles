@@ -22,9 +22,21 @@ agent = Agent(name="Shogun")
 
 #a function to define one cycle of asking everyone
 def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
-    prompt = "You must embody the given persona. Act as this person and speak in first person as well. Explain your general sentiments on the provided media based on your background, and do not hesitate to be critical or supportive. Consider all parts of your life as the user persona depicted and generate a quick paragraph summarizing your sentiments and thoughts on the appeal of the media given to you as well as any other insights. Speak definitely and do no tbe afraid to be very critical or even controversial. Keep a careful eye out for any remarks that may be racist, sexist, or harmful in any way. Do not use emojis, only use alphanumeric characters"
+    prompt = """You must embody the given persona. Act as this person and speak in first person as well. Explain your general sentiments on the provided 
+    media based on your background, and do not hesitate to be critical or supportive. Consider all parts of your life as the user persona depicted and 
+    generate a quick paragraph summarizing your sentiments and thoughts on the appeal of the media given to you as well as any other insights. Speak 
+    definitively and do no tbe afraid to be very critical or even controversial, but also feel free to be understanding and enthusiastic as well, 
+    whatever seems reasonable given all of your context. Keep a careful eye out for any remarks that may be racist, sexist, or 
+    harmful in any way. Do not use emojis, only use alphanumeric characters"""
     prompt2 = """Create a title and description for the following persona. This should be in the format [title, description].
     For example: ["my_title", "my_description"]. Your response should not contain anything except this two element array containing title and description"""
+    prompt3 = """
+        Pay close attention to the specific details of the media that make you feel how you do. No matter how small a detail, even if it is a few seconds out of a 10-minute
+        clip or a harmful sentence in a long essay, it should always be caught and articulated. For example, if the file is a video, note the actual timestamps of the 
+        video that relate to your sentiments or invoke certain feelings, whether it be positive or negative. If the file is a text prompt, find specific quotes from the 
+        text that relate to your sentiment or invoke certain feelings, whether it be positive or negative. If the file is an image, describe in detail the parts of the 
+        image that relate to your sentiment or invoke certain feelings, whether it be positive or negative."""
+
     for p in persona_prompts:
         new_input = input + " Persona: " + p + " "
         new_input += prompt + " "
@@ -32,7 +44,7 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
             new_input += "Here is what some other users think: " + prev_summary
         #instead of invoke, call a function that is able to handle text/video then invoke
         p_response = llm.invoke(input_file, new_input)
-        p_response2 = llm.invoke_manager(prompt2 + " " + p)
+        p_response2 = llm.invoke_manager(prompt2 + " " + p + prompt3)
         title_desc = json.loads(p_response2)
         title = title_desc[0]
         desc = title_desc[1]
@@ -56,17 +68,29 @@ def cycle(id, cycle_num, llm, input, input_file, persona_prompts, prev_summary):
         {response}
         """
     )
+
+    response3 = llm.invoke_manager(
+        """
+        From the following summary of sentiments and details related to those sentiments, identify and extract the key areas of improvement denoted as specifically
+        as possible, including everything from timestamps for videos, direct quotes from text, and detailing from images. These details will be used to address issues
+        in the media and mitigate the spread of harmful content for all viewers. You must respond with 1-2 sentences. 
+        """
+    )
+
     print("SUMMARY: " + response)
     print(f"SCORE: " + response2)
+    print("IMPROVEMENT: " + response3)
     summary = response
     score = int(response2)
+    improvement = response3
     if cycle_num == 1:
         d = (50-score)/2
         score += d
-    add_cycle_data(id, summary, score, cycle_num)
+    add_cycle_data(id, summary, score, improvement, cycle_num)
     #add summary + sentiment score to database
     print("SUMMARY: " + summary)
     print(f"SCORE: {score}")
+    print("IMPROVEMENT: " + improvement)
     print("\n")
     #add info about cycle here
     return summary, score

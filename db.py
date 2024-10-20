@@ -11,14 +11,14 @@ import os
 # ]
 # 
 
-def add_cycle_data(sessionID, summary, score, cycle):
+def add_cycle_data(sessionID, summary, score, improvement, cycle):
     dotenv.load_dotenv()
     user = os.getenv("SINGLE_STORE_USER")
     password = os.getenv("SINGLE_STORE_PASSWORD")
 
     conn = s2.connect(f'{user}:{password}@svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com:3333/db_marcus_00bad')
-    stmt = 'INSERT INTO cycles (Summary, Score, Cycle, SessionID) VALUES (%s, %s, %s, %s)'
-    data = (summary, score, cycle, sessionID)
+    stmt = 'INSERT INTO cycles (Summary, Score, Improvement, Cycle, SessionID) VALUES (%s, %s, %s, %s, %s)'
+    data = (summary, score, improvement, cycle, sessionID)
     with conn:
         conn.autocommit(True)
         with conn.cursor() as cur:
