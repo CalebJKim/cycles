@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
+import HeaderBar from './Components/HeaderBar';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Home';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

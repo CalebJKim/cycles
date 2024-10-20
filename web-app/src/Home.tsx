@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import SafetyScoreDashboard from './SafetyScoreOverview/SafetyScoreDashboard';
 import axios from 'axios';
+import CycleGraph from './Components/CycleGraph';
+import GraphCard from './Components/GraphCard';
+import Dashboard from './Pages/Dashboard';
+import './App.css'
 
 const Home: React.FC = () => {
     // Define state with TypeScript
@@ -16,9 +20,11 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="App">
          {/* <p>Data from Flask: {apiData}</p> */}
-        <SafetyScoreDashboard />
+        {/* <SafetyScoreDashboard /> */}
+        {/* <GraphCard /> */}
+        <Dashboard />
     </div>
   )
 
