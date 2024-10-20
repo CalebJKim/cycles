@@ -1,13 +1,42 @@
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+import requests
+import os
+from db import get_session_cycles, start_session
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/data', methods=['GET'])
+app.config['UPLOAD_FOLDER'] = './uploads'
+
+id = -1
+
+@app.route('/api/cycles', methods=['GET'])
 def get_data():
-    data = {'message': 'Hello from Flask API!'}
+    cycles = get_session_cycles(id)
+    data = {'message': cycles}
     return jsonify(data)
+
+@app.route('/api/arena', methods=['POST'])
+def handle_post():
+    global id
+    prompt = request.form.get('text')
+    filepath = ''
+    if 'file' in request.files:
+        file = request.files['file']
+        if file.filename != '':
+            if file:
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+                file.save(file_path)
+    id = start_session()
+    r = requests.post("http://localhost:8000/manager/post", 
+                      json={ "text": prompt, "file": filepath, "id": id }, 
+                      headers={"Content-Type": "application/json"})
+    if r.status_code != 200:
+        print("ALERT ALERT ALERT ERROR")
+    else:
+        print("BAD BAD BAD BAD BAD INVALID FORMAT")
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

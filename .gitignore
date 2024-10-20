@@ -4,3 +4,10 @@ __pycache__
 web-app/node_modules
 private_keys.jsoncar_soccer.jpg
 rl_clip.mov
+
+private_keys.json
+
+uploads/*
+
+.DS_Store
+.zshrc

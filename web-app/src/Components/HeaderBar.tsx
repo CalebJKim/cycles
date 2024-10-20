@@ -22,7 +22,7 @@ const HeaderBar: React.FC = () => {
               <Button color="inherit" component={Link} to="/">
                 Home
               </Button>
-              <Button color="inherit" component={Link} to="/persona">
+              <Button color="inherit" component={Link} to="/upload">
                 Upload Media
               </Button>
             </Box>
