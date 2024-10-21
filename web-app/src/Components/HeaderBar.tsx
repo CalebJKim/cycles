@@ -56,7 +56,7 @@ const HeaderBar: React.FC = () => {
                 textAlign: "center",
               }}
             >
-              CrowdMeter
+              marketmind
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Button color="inherit" component={Link} to="/upload">

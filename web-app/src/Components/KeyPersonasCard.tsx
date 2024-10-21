@@ -188,9 +188,6 @@ const KeyPersonasCard = () => {
                 <Typography variant="subtitle1" sx={{ lineHeight: 1.6 }}>
                   Persona {index + 1}
                 </Typography>
-                <Typography variant="subtitle1" sx={{ lineHeight: 1.6 }}>
-                  {0}% Positive
-                </Typography>
               </Stack>
               <Stack
                 direction="row"
@@ -204,19 +201,6 @@ const KeyPersonasCard = () => {
                 >
                   {persona.title}
                 </Typography>
-                <LinearProgress
-                  variant="determinate"
-                  value={0}
-                  sx={{
-                    width: "180px",
-                    height: 6,
-                    borderRadius: 5,
-                    "& .MuiLinearProgress-bar": {
-                      backgroundColor: "#487DE7",
-                    },
-                    backgroundColor: "#FF5D5D",
-                  }}
-                />
               </Stack>
               <Typography
                 variant="body2"
