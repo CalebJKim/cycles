@@ -1,0 +1,15 @@
+Media Input: A video of a cat playing with a toy.
+Round 1:
+Alice (optimistic, loves nature and photography - happy): Alice finds the cat video heartwarming! They are in a good mood, which makes them more positive about the media.
+Bob (curious, tech-savvy, skeptical - curious): Bob is curious about the cat's behavior in the video. Their curiosity makes them think deeper about the implications.
+Charlie (fun-loving, carefree, loves animals - neutral): Charlie finds the cat video heartwarming!
+Dana (serious, intellectual, philosophical - frustrated): Dana is curious about the cat's behavior in the video. However, they feel slightly frustrated, which colors their reaction.
+
+Round 2:
+Alice (optimistic, loves nature and photography - curious): Alice finds the cat video heartwarming! Their curiosity makes them think deeper about the implications.
+Bob (curious, tech-savvy, skeptical - neutral): Bob is curious about the cat's behavior in the video.
+Charlie (fun-loving, carefree, loves animals - happy): Charlie finds the cat video heartwarming! They are in a good mood, which makes them more positive about the media.
+Dana (serious, intellectual, philosophical - neutral): Dana is curious about the cat's behavior in the video.
+
+Alice's Memory: Alice finds the cat video heartwarming! They are in a good mood, which makes them more positive about the media., Alice finds the cat video heartwarming! Their curiosity makes them think deeper about the implications.
+...

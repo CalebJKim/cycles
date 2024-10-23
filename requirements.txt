@@ -72,3 +72,5 @@ websockets==10.4
 Werkzeug==3.0.4
 wheel==0.44.0
 yarl==1.15.5
+autogen
+yaml

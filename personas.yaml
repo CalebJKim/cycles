@@ -1,0 +1,27 @@
+# personas.yaml
+personas:
+  - name: "Alice"
+    personality: "optimistic, loves nature and photography"
+    hobbies: "photography, hiking, writing blogs"
+    description: "Alice is a nature enthusiast who sees beauty in everything."
+
+  - name: "Bob"
+    personality: "curious, tech-savvy, skeptical"
+    hobbies: "coding, reading science fiction, playing chess"
+    description: "Bob is a tech nerd who likes to analyze things critically."
+
+  - name: "Charlie"
+    personality: "fun-loving, carefree, loves animals"
+    hobbies: "playing video games, volunteering at animal shelters"
+    description: "Charlie enjoys having fun and is always up for a good time."
+
+  - name: "Dana"
+    personality: "serious, intellectual, philosophical"
+    hobbies: "reading philosophy, attending debates, writing essays"
+    description: "Dana is deeply philosophical and often ponders the deeper meaning of life."
+
+media_inputs:
+  image: "A beautiful sunset over the ocean."
+  video: "A video of a cat playing with a toy."
+  text: "An article discussing the future of AI in society."
+
