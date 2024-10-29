@@ -29,12 +29,27 @@ Mac/Linux:
 cd into the web-app folder, then run
 ```npm i```
 
-## Starting the webserver
+## Set Environment variables
 
-Note you will have to have different windows
+Please put the following in a .env:
 
-Start the backend (inside the cycles folder):
+SINGLE_STORE_USER=[single store user]
+
+SINGLE_STORE_PASSWORD=[single store password]
+
+FETCH_API_KEY=[api key from fetch's agentverse]
+
+GEMINI_API_KEY=[api key from Google AI Studio]
+
+## Starting the server
+
+Note you will have to have 3 different windows for this to work properly
+
+Start the backend (inside the main folder (marketmind or whatever it is named)):
 ```python app.py```
+
+and also start the manager agent:
+```python manager_agent.py```
 
 Start the frontend (inside the web-app folder):
 ```npm start```
